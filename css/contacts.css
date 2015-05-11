@@ -1,0 +1,66 @@
+body {
+	background: lightblue;
+}
+
+.wrap {
+	width: 100%;
+}
+
+ul.contacts {
+	margin: 0 auto;
+	width: 500px;
+}
+
+.spacer {
+	width: 100px;
+	height: 0;
+}
+
+div.loader {
+	padding:50px;
+	margin:0 auto;
+	text-align: center;
+	background: grey;
+}
+
+ul.contacts li {
+	list-style: none;
+	height: 150px;
+	color: white;
+	font-size: 30px;
+	text-transform: capitalize;
+}
+
+li .contact-inner {
+	padding: 20px;
+}
+
+li img {
+	margin-right: 20px;
+}
+
+ul.contacts li.odd {
+	background: blue;
+}
+
+ul.contacts li.even{
+	background: red;
+}
+
+ul.contacts li.new{
+	display: none;
+}
+
+div.debug-info{
+	background: white;
+	position: fixed;
+	right:20px;
+	width:200px;
+	height:500px;
+	overflow: scroll;
+	font-size: 10px;
+}
+
+div.debug-info .on-page {
+	font-weight: bold;
+}

@@ -44,11 +44,12 @@ function createContactCard(index){
 
 	name = pageContacts.results[index].user.name.first + " " + pageContacts.results[index].user.name.last
 
-	color = "#" + pageContacts.results[index].user.location.zip + "0"
+	//color = "#" + pageContacts.results[index].user.location.zip + "0"
+	color = Math.floor(Math.random()*900000)+100000;
 	image = '<img src="'+pageContacts.results[index].user.picture.thumbnail +'">'
 
 	rowClass = "odd"
-	returnValue = '<li style="background:'+color+';" class="contact-'+ index +' '+ rowClass +'"><div class="contact-inner">' + image + name + "</div></li>";
+	returnValue = '<li style="background:#'+color+';" class="contact-'+ index +' '+ rowClass +'"><div class="contact-inner">' + image + name + "</div></li>";
 	return returnValue;
 
 }
@@ -65,11 +66,9 @@ function addToPage(html, isBottom){
 	if( isBottom ){
 		// If bottom, append contact card to the bottom
 		$("ul.contacts").append(html);
-		console.log("Added conact with index " + i + " to BOTTOM of the page.")
 	} else {
 		//If top, prepend the contact card to the top
 		$("ul.contacts").prepend(html);
-		console.log("Added conact with index " + i + " to TOP of the page.")
 	}
 
 }
@@ -154,7 +153,6 @@ function scrollContacts(isDown){
 		newTopContact = currentTopContact + scrollInterval;
 		for(i = currentTopContact; i < newTopContact; i++) {
 			removeFromPage(i);
-			console.log("Removed contact with index " + i + " from page")
 		}
 		currentTopContact = newTopContact;
 
@@ -181,7 +179,6 @@ function scrollContacts(isDown){
 		newBottomContact = currentBottomContact - scrollInterval;
 		for(i = currentBottomContact; i > newBottomContact; i--) {
 			removeFromPage(i, false);
-			console.log("Removed contact with index " + i + " from page")
 		}
 		currentBottomContact = newBottomContact;
 
@@ -196,9 +193,11 @@ $(document).ready(function(){
 $(window).scroll(function(){
     if  ($(window).scrollTop() == $(document).height() - $(window).height()){
 			scrollContacts();
+			console.log("Adding contacts to bottom triggered.")
     }
 
-    if( $(window).scrollTop() < 150 && currentTopContact > 0){
+    if(currentTopContact > 0 && $(window).scrollTop() < 10){
     	scrollContacts(false);
+    	console.log("Adding contacts to top triggered.")
     }
 });

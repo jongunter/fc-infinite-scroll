@@ -33,6 +33,7 @@ function fetchContactsFromServer(amount) {
 	    	pageContacts = data;
 	    	console.log("Successfuly fetched " + amount + " contacts from the server.")
 	    	loadContacts();
+	    	$('.bottom-loader').fadeOut();
 	  	}
 	});
 }
@@ -199,11 +200,5 @@ $(window).scroll(function(){
 
     if( $(window).scrollTop() < 150 && currentTopContact > 0){
     	scrollContacts(false);
-    }
-
-    if(currentBottomContact >= numContacts-1) {
-    	$('.bottom-loader').fadeOut()
-    } else {
-    	$('.bottom-loader').show()
     }
 });
